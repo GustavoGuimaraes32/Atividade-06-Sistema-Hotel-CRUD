@@ -3,7 +3,7 @@ CREATE DATABASE hotel;
 USE hotel;
 
 CREATE USER IF NOT EXISTS 'hotel_admin'@'%' IDENTIFIED BY '123';
-GRANT ALL ON hotel.* TO 'hotel_admin'@'%';
+GRANT ALL PRIVILEGES ON hotel.* TO 'hotel_admin'@'%';
 
 CREATE TABLE tb_cliente
 (

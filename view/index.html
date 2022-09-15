@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<title>Animated Login Form</title>
+	<meta charset="UTF-8">
+	<title>Cadastrar Usuário</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<script src="https://kit.fontawesome.com/93d18202e7.js" crossorigin="anonymous"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -15,7 +16,7 @@
 		</div>
 		<div class="login-content">
 
-			<form action="index.html">
+			<form action="../controller/cadastraCliente.php" method="POST">
 
 				<h2 class="title">Cadastrar Usuário</h2>
 
@@ -25,7 +26,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Nome</h5>
-           		   		<input type="text" class="input">
+           		   		<input type="text" name="nome" class="input">	
            		   </div>
            		</div>
 
@@ -35,7 +36,7 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Sobrenome</h5>
-           		    	<input type="text" class="input">
+           		    	<input type="text" class="input" name="sobrenome">
             	   </div>
             	</div>
 
@@ -45,7 +46,7 @@
 					</div>
 					<div class="div">
 						 <h5>CPF</h5>
-						 <input type="text" class="input">
+						 <input type="text" oninput="mascara(this)" class="input" required maxlength="14" title="O campo deve ser preenchido da seguinte maneira: 000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" name="cpf">
 				 </div>
 			  </div>
 
@@ -55,25 +56,48 @@
 				</div>
 				<div class="div">
 					 <h5>Endereço</h5>
-					 <input type="text" class="input">
+					 <input type="text" class="input" name="endereco">
 			 </div>
 		  </div>
 
 		  <div class="input-div pass">
 			<div class="i"> 
-					<i class="fa-regular fa-phone"></i>
+					<i class="fa-solid fa-square-phone-flip"></i>
 			</div>
 			<div class="div">
 				 <h5>Telefone</h5>
-				 <input type="text" class="input">
+				 <input type="text" class="input" pattern="\([0-9]{2}\)[0-9]{4,5}-[0-9]{4}$"
+				 title="O Telefone dece ser inserido da seguinte forma: (xx)xxxxx-xxxx"
+				 required="required" name="telefone">
 		 </div>
 	  </div>
 
-            	<input type="submit" class="btn" value="Login">
+            	<input type="submit" class="btn" value="Cadastrar">
             </form>
 
         </div>
     </div>
     <script type="text/javascript" src="js/main.js"></script>
+	<script>
+		// MASCARA PARA O INPUT CPF
+
+		function mascara(i)
+  		{
+    
+			var v = i.value;
+			
+			if(isNaN(v[v.length-1]))
+			{
+			// impede entrar outro caractere que não seja número
+			i.value = v.substring(0, v.length-1);
+			return;
+			}
+			
+			i.setAttribute("maxlength", "14");
+			if (v.length == 3 || v.length == 7) i.value += ".";
+			if (v.length == 11) i.value += "-";
+
+		}
+	</script>
 </body>
 </html>
